@@ -1,0 +1,10 @@
+pdf_reader: zathura
+classes:
+  microeconomics:
+    notes: ~/Dropbox/TCNJ/microeconomics/
+    book: ~/Dropbox/books/school/microeconomics.pdf
+  algorithms:
+    notes: ~/Dropbox/TCNJ/algo/
+    book: ~/Dropbox/books/school/algorithms.pdf
+  asl:
+    notes: ~/Dropbox/TCNJ/asl/

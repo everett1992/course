@@ -1,0 +1,32 @@
+#!/bin/env ruby
+
+# org-list.rb
+require './application'
+
+def pdf_open pdf
+  exec "#{CONFIG['pdf_reader']} #{File.expand_path pdf} &> /dev/null & disown"
+end
+
+NUM_ARGS = 1
+id = ARGV.first
+id = '' unless id # Use a blank id if none was passed
+
+org = Org.new CONFIG['classes']
+
+courses = org.get(id)
+
+if courses.empty?
+  warn "No course matches #{id.red}"
+  exit 1
+elsif courses.count > 1
+  warn "Ambiguous '#{id.red}' matches these courses:\n #{courses.map(&:title).join(",\n ")}"
+  exit 1
+end
+
+if courses.first.book
+  puts "Opening #{courses.first.book}"
+  pdf_open courses.first.book
+else
+  warn "The course #{courses.first.title.red} does not have a book."
+  exit 1
+end

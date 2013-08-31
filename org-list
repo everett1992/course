@@ -1,0 +1,12 @@
+#!/bin/env ruby
+
+# org-list.rb
+require './org'
+require 'yaml'
+
+config = YAML.load(File.open('config.yml', 'r'))
+org = Org.new config['classes']
+
+org.list.each_with_index do |title, i|
+  puts "[#{i}] #{title}"
+end
